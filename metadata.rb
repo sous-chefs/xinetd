@@ -1,0 +1,10 @@
+name             "xinetd"
+maintainer       "Steven Danna"
+maintainer_email "steve@opscode.com"
+license          "Apache 2.0"
+description      "Installs/Configures xinetd"
+long_description "Installs and configures the xinetd internet service daemon.  Also provides an LWRP for configuring xinetd services."
+version          "0.9.0"
+
+supports "ubuntu"
+supports "centos"

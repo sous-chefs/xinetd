@@ -1,0 +1,11 @@
+defaults
+{
+<% node['xinetd']['defaults'].each do |k,v| -%>
+<% v = XinetdServiceHelpers.xinetd_value(v) -%>
+<% if v -%>
+   <%= k %> = <%= v %>
+<% end -%>
+<% end -%>
+}
+
+includedir /etc/xinetd.d
