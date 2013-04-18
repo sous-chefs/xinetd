@@ -7,8 +7,11 @@ service daemon.  It also provides an LWRP for managing xinetd services.
 
 ## Platforms
 
-This cookbook has been tested on Centos 6.3; however, it likely works
-on any platform that has a package called "xinetd".
+This cookbook has been tested on Centos and Ubuntu.
+
+## Chef Version
+
+This cookbook only supports Chef 11.
 
 # Resources
 
