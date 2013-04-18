@@ -1,7 +1,7 @@
 # xinetd cookbook
 
-This cookbook configures installs and configures the xinetd internet
-service daemon.  It also provides an LWRP for managing xinetd services.
+This cookbook installs and configures the xinetd internet service
+daemon.  It also provides an LWRP for managing xinetd services.
 
 # Requirements
 
