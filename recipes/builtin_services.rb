@@ -2,7 +2,7 @@ include_recipe "xinetd::default"
 
 %w{chargen daytime discard echo time}.each do |svc|
   xinetd_service "#{svc}-stream" do
-    service_name "#{svc}"
+    service_name svc
     id "#{svc}-stream"
     type "INTERNAL"
     wait false
@@ -17,7 +17,7 @@ include_recipe "xinetd::default"
   end
 
   xinetd_service "#{svc}-dgram" do
-    service_name "#{svc}"
+    service_name svc
     id "#{svc}-dgram"
     type "INTERNAL"
     wait true
