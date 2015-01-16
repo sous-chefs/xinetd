@@ -1,0 +1,5 @@
+rvm:
+  - 1.9.3
+  - 2.1.4
+script:
+  - bundle exec foodcritic -f any . --tags ~FC015
