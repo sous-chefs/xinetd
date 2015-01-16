@@ -18,6 +18,7 @@ end
 
 def service_def_template(disabled)
   template "/etc/xinetd.d/#{new_resource.name}" do
+    cookbook new_resource.cookbook
     source "service.erb"
     variables :name => new_resource.service_name,
     :options => xinetd_options,
