@@ -1,16 +1,32 @@
 ---
-driver_plugin: vagrant
+driver:
+  name: vagrant
+  require_chef_omnibus: false
+  vm_hostname: 'alti-cobbler-test.kitchen.altiscale.com'
+  network:
+  - ['private_network', {ip: '10.10.10.99'}]
+  customize:
+    natdnsproxy1: 'off'
+    natdnshostresolver1: 'off'
+    memory: 2048
+    cpus: 2
+
+provisioner:
+  name: chef_zero
+  chef_client_path: '/usr/bin/chef-client'
+
+busser:
+  ruby_bindir: /usr/bin
 
 platforms:
-- name: ubuntu-12.04
-  driver_config:
-    box: canonical-ubuntu-12.04
-    box_url: http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box
-    require_chef_omnibus: true
-- name: centos-6.3
-  driver_config:
-    box: opscode-centos-6.3
-    box_url: http://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.3_chef-11.2.0.box
+  - name: prometheus-6.5.11
+    driver_config:
+      box: prometheus-6.5.11-201509222220
+      box_url: https://s3-us-west-1.amazonaws.com/com.altiscale.vagrant/prometheus/boxes/prometheus-6.5.11-201509222220.box?AWSAccessKeyId=AKIAIKOVEEW6FVT5JBQA&Expires=1758540162&Signature=NKM7r5d24o02JzTBKAXiYBW6BIE%3D
+  - name: prometheus-6.6.0
+    driver_config:
+      box: prometheus-6.6.0-201507161802
+      box_url: https://s3-us-west-1.amazonaws.com/com.altiscale.vagrant/prometheus/boxes/prometheus-6.6.0-201507161802.box?AWSAccessKeyId=AKIAIKOVEEW6FVT5JBQA&Expires=1752649955&Signature=aGC2AvL9oAME0usGfwVgyTxKjec%3D
 
 suites:
 - name: default
