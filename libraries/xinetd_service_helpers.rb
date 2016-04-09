@@ -8,7 +8,7 @@ module XinetdServiceHelpers
              :env, :passenv, :port, :redirect, :bind, :interface, :banner,
              :banner_success, :banner_failure, :per_source, :cps, :max_load,
              :groups, :mdns, :umask, :enabled, :rlimit_as, :rlimit_files,
-             :rlimit_cpus, :rlimit_data, :rlimit_rss, :rlimit_stack, :deny_time ]
+             :rlimit_cpus, :rlimit_data, :rlimit_rss, :rlimit_stack, :deny_time ] unless defined? OPTIONS
 
   def self.xinetd_bool(bool)
     bool ? "yes" : "no"
