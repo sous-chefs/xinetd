@@ -1,6 +1,6 @@
 service <%= @name %>
 {
-        disabled = <%= @disabled %>
+        disable = <%= @disabled %>
         <% @options.each do |k,v| -%>
         <% if v -%>
         <%= k %> = <%= v %>
