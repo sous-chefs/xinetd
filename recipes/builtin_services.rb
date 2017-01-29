@@ -7,7 +7,7 @@ include_recipe "xinetd::default"
     type "INTERNAL"
     wait false
     socket_type "stream"
-    if node['xinetd']['builtin_services']["#{svc}-stream"]['enabled']
+    if node["xinetd"]["builtin_services"]["#{svc}-stream"]["enabled"]
       action :enable
     else
       action :disable
@@ -22,7 +22,7 @@ include_recipe "xinetd::default"
     type "INTERNAL"
     wait true
     socket_type "dgram"
-    if node['xinetd']['builtin_services']["#{svc}-dgram"]['enabled']
+    if node["xinetd"]["builtin_services"]["#{svc}-dgram"]["enabled"]
       action :enable
     else
       action :disable
@@ -36,7 +36,7 @@ xinetd_service "tcpmux-server" do
   type "INTERNAL"
   wait false
   socket_type "stream"
-  if node['xinetd']['builtin_services']["tcpmux-server"]['enabled']
+  if node["xinetd"]["builtin_services"]["tcpmux-server"]["enabled"]
     action :enable
   else
     action :disable

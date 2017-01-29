@@ -21,8 +21,8 @@ def service_def_template(disabled)
     cookbook new_resource.cookbook
     source "service.erb"
     variables :name => new_resource.service_name,
-    :options => xinetd_options,
-    :disabled => XinetdServiceHelpers.xinetd_bool(disabled)
+              :options => xinetd_options,
+              :disabled => XinetdServiceHelpers.xinetd_bool(disabled)
     notifies :reload, "service[xinetd]", :immediately
   end
 end

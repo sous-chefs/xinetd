@@ -8,3 +8,6 @@ version          "1.0.1"
 
 supports "ubuntu"
 supports "centos"
+
+source_url "https://github.com/stevendanna/xinetd"
+issues_url "https://github.com/stevendanna/xinetd/issues"
