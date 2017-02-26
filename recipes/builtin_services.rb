@@ -12,8 +12,6 @@ include_recipe "xinetd::default"
     else
       action :disable
     end
-
-    action :enable
   end
 
   xinetd_service "#{svc}-dgram" do
