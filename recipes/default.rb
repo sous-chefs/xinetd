@@ -17,15 +17,15 @@
 # limitations under the License.
 #
 
-package "xinetd"
+package 'xinetd'
 
-directory "/etc/xinetd.d/"
+directory '/etc/xinetd.d/'
 
-template "/etc/xinetd.conf" do
-  notifies :reload, "service[xinetd]", :immediately
+template '/etc/xinetd.conf' do
+  notifies :reload, 'service[xinetd]', :immediately
 end
 
-service "xinetd" do
-  supports :reload => true
+service 'xinetd' do
+  supports reload: true
   action [:enable, :start]
 end
