@@ -8,16 +8,16 @@ module XinetdServiceHelpers
              :env, :passenv, :port, :redirect, :bind, :interface, :banner,
              :banner_success, :banner_failure, :per_source, :cps, :max_load,
              :groups, :mdns, :umask, :enabled, :rlimit_as, :rlimit_files,
-             :rlimit_cpus, :rlimit_data, :rlimit_rss, :rlimit_stack, :deny_time ] unless defined? OPTIONS
+             :rlimit_cpus, :rlimit_data, :rlimit_rss, :rlimit_stack, :deny_time].freeze unless defined? OPTIONS
 
   def self.xinetd_bool(bool)
-    bool ? "yes" : "no"
+    bool ? 'yes' : 'no'
   end
 
   def self.xinetd_value(v)
     case v
     when Array
-      v.join(" ")
+      v.join(' ')
     when TrueClass, FalseClass
       xinetd_bool(v)
     else
