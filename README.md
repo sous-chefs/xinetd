@@ -20,13 +20,15 @@ This cookbook only supports Chef 11.
 The xinetd_service resource allows you to define and enable xinetd
 services.  For example:
 
-    xinetd_service "discard" do
-      id "discard-stream"
-      type "INTERNAL"
-      wait false
-      socket_type "stream"
-      action :enable
-    end
+```ruby
+xinetd_service "discard" do
+  id "discard-stream"
+  type "INTERNAL"
+  wait false
+  socket_type "stream"
+  action :enable
+end
+```
 
 All options supported in xinetd 2.3.14 are currently supported by this
 provider.
@@ -97,16 +99,15 @@ starts the xinetd service.
 This recipe configures stream and datagram services that xinetd
 implements internally:
 
-- echo
-- time
-- daytime
-- chargen
-- discard
-- tcpmux-server
+* echo
+* time
+* daytime
+* chargen
+* discard
+* tcpmux-server
 
 By default this recipes configures all services.  Individual services
 can be disabled by using the appropriate attributes (see above.)
-
 
 # Author
 
