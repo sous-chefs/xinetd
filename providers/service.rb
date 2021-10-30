@@ -1,4 +1,4 @@
-use_inline_resources
+
 
 action :enable do
   service 'xinetd' do
