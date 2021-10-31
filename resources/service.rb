@@ -1,10 +1,47 @@
-actions :enable, :disable
-
-attribute :cookbook, kind_of: String, default: 'xinetd'
-attribute :service_name, name_attribute: true
+property :cookbook, kind_of: String, default: 'xinetd'
+property :service_name, String, name_property: true
+unified_mode true
 
 XinetdServiceHelpers::OPTIONS.each do |opt|
-  attribute opt
+  property opt
 end
 
 default_action :enable
+
+action :enable do
+  service 'xinetd' do
+    supports reload: true
+    action :start
+  end
+  service_def_template(false)
+end
+
+action :disable do
+  service 'xinetd' do
+    supports reload: true
+    action :nothing
+  end
+  service_def_template(true)
+end
+
+action_class do
+  def service_def_template(disabled)
+    template "/etc/xinetd.d/#{new_resource.name}" do
+      cookbook new_resource.cookbook
+      source 'service.erb'
+      variables name: new_resource.service_name,
+                options: xinetd_options,
+                disabled: XinetdServiceHelpers.xinetd_bool(disabled)
+      notifies :reload, 'service[xinetd]', :immediately
+    end
+  end
+
+  def xinetd_options
+    ret = {}
+    XinetdServiceHelpers::OPTIONS.each do |opt|
+      next unless new_resource.respond_to?(opt.to_sym)
+      ret[opt] = XinetdServiceHelpers.xinetd_value(new_resource.send(opt))
+    end
+    ret
+  end
+end

@@ -6,7 +6,7 @@ description       'Installs/Configures xinetd'
 version           '1.0.2'
 source_url        'https://github.com/sous-chefs/xinetd'
 issues_url        'https://github.com/sous-chefs/xinetd/issues'
-chef_version      '>= 12.1'
+chef_version      '>= 15.3'
 
 supports 'ubuntu'
 supports 'centos'

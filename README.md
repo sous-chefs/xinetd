@@ -26,7 +26,7 @@ This cookbook has been tested on Centos and Ubuntu.
 
 ## Chef Version
 
-This cookbook only supports Chef 11.
+Chef 15.3+
 
 # Resources
 
