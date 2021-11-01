@@ -5,6 +5,7 @@
 - Sous Chefs Adoption
 - Migrate to custom resource and enabled unified_mode
 - Require Chef >= 15.3
+- Add ChefSpec tests
 
 ## 1.0.2 - *2017-02-26*
 
