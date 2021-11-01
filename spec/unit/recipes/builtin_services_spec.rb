@@ -32,7 +32,7 @@ describe 'xinetd::builtin_services' do
 
   it do
     is_expected.to enable_xinetd_service('tcpmux-server').with(
-      service_name: 'tcpmux-server',
+      service_name: 'tcpmux',
       id: 'tcpmux-server',
       type: 'INTERNAL',
       wait: false,

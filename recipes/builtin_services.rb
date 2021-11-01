@@ -29,7 +29,7 @@ include_recipe 'xinetd::default'
 end
 
 xinetd_service 'tcpmux-server' do
-  service_name 'tcpmux-server'
+  service_name 'tcpmux'
   id 'tcpmux-server'
   type 'INTERNAL'
   wait false
