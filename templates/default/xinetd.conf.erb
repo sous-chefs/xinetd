@@ -6,7 +6,7 @@
 defaults
 {
 <% node['xinetd']['defaults'].each do |k,v| -%>
-<% v = XinetdServiceHelpers.xinetd_value(v) -%>
+<% v = Xinetd::Cookbook::Helpers.xinetd_value(v) -%>
 <% if v -%>
    <%= k %> = <%= v %>
 <% end -%>

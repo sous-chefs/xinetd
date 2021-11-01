@@ -2,7 +2,7 @@ property :cookbook, kind_of: String, default: 'xinetd'
 property :service_name, String, name_property: true
 unified_mode true
 
-XinetdServiceHelpers::OPTIONS.each do |opt|
+Xinetd::Cookbook::Helpers::OPTIONS.each do |opt|
   property opt
 end
 
@@ -31,16 +31,16 @@ action_class do
       source 'service.erb'
       variables name: new_resource.service_name,
                 options: xinetd_options,
-                disabled: XinetdServiceHelpers.xinetd_bool(disabled)
+                disabled: Xinetd::Cookbook::Helpers.xinetd_bool(disabled)
       notifies :reload, 'service[xinetd]', :immediately
     end
   end
 
   def xinetd_options
     ret = {}
-    XinetdServiceHelpers::OPTIONS.each do |opt|
+    Xinetd::Cookbook::Helpers::OPTIONS.each do |opt|
       next unless new_resource.respond_to?(opt.to_sym)
-      ret[opt] = XinetdServiceHelpers.xinetd_value(new_resource.send(opt))
+      ret[opt] = Xinetd::Cookbook::Helpers.xinetd_value(new_resource.send(opt))
     end
     ret
   end
