@@ -10,6 +10,5 @@ chef_version      '>= 15.3'
 
 supports 'centos'
 supports 'debian'
-supports 'fedora'
 supports 'redhat'
 supports 'ubuntu'

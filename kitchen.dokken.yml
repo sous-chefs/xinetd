@@ -42,11 +42,6 @@ platforms:
       image: dokken/debian-11
       pid_one_command: /bin/systemd
 
-  - name: fedora-latest
-    driver:
-      image: dokken/fedora-latest
-      pid_one_command: /usr/lib/systemd/systemd
-
   - name: ubuntu-18.04
     driver:
       image: dokken/ubuntu-18.04
