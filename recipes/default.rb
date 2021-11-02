@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: xinetd
+# Cookbook:: xinetd
 # Recipe:: default
 #
-# Copyright (C) 2013 Steven Danna
+# Copyright:: (C) 2013 Steven Danna
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

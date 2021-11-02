@@ -1,0 +1,5 @@
+---
+name: xinetd-default
+inputs:
+  - name: builtin
+    value: false
