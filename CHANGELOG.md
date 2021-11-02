@@ -1,6 +1,6 @@
 # xinetd Cookbook CHANGELOG
 
-## Unreleased
+## 2.0.0 - *2021-11-02*
 
 - Sous Chefs Adoption
 - Migrate to custom resource and enabled unified_mode
