@@ -1,15 +1,12 @@
 # xinetd cookbook
 
-[![Cookbook Version](https://img.shields.io/cookbook/v/selnux.svg)](https://supermarket.chef.io/cookbooks/xinetd)
-[![CI State](https://github.com/sous-chefs/xinetd/workflows/ci/badge.svg)](https://github.com/sous-chefs/xinetd/actions?query=workflow%3Aci)
 [![OpenCollective](https://opencollective.com/sous-chefs/backers/badge.svg)](#backers)
 [![OpenCollective](https://opencollective.com/sous-chefs/sponsors/badge.svg)](#sponsors)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Description
 
-This cookbook installs and configures the xinetd internet service daemon. It also provides an LWRP for managing xinetd
-services.
+This cookbook installs and configures the xinetd internet service daemon. It also provides an LWRP for managing xinetd services.
 
 ## Maintainers
 
@@ -28,9 +25,9 @@ This cookbook has been tested on Centos and Ubuntu.
 
 Chef 15.3+
 
-# Resources
+## Resources
 
-## xinetd_service
+### xinetd_service
 
 The xinetd_service resource allows you to define and enable xinetd
 services.  For example:
@@ -57,7 +54,7 @@ The `xinetd_service` provider will attempt to relaod the xinetd
 service. Including this cookbooks default recipe before using it will
 ensure that such a service exists.
 
-# Attributes
+## Attributes
 
 The default recipe uses the following attributes to render the default
 xinetd.conf configuration block.  See xinetd.conf(5) for their
@@ -102,7 +99,7 @@ true by default.
 * `default['xinetd']['builtin_services']['time-dgram']['enabled']`
 * `default['xinetd']['builtin_services']['tcpmux-server']['enabled']`
 
-# Recipes
+## Recipes
 
 ## default.rb
 
@@ -124,9 +121,9 @@ implements internally:
 By default this recipes configures all services.  Individual services
 can be disabled by using the appropriate attributes (see above.)
 
-# Author
+## Author
 
-Author:: Steven Danna (<steve@opscode.com>)
+Author:: Steven Danna
 
 ## Contributors
 
