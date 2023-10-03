@@ -1,6 +1,6 @@
 # xinetd Cookbook CHANGELOG
 
-## Unreleased
+## 2.1.0 - *2023-10-03*
 
 - Remove CircleCI config
 - Switch from Delivery to reusable workflows
