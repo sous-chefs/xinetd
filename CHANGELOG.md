@@ -1,6 +1,6 @@
 # xinetd Cookbook CHANGELOG
 
-## Unreleased
+## 2.1.1 - *2024-05-03*
 
 ## 2.1.0 - *2023-10-03*
 
