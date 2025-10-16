@@ -1,5 +1,12 @@
 # xinetd Cookbook CHANGELOG
 
+## [2.1.4](https://github.com/sous-chefs/xinetd/compare/2.1.3...v2.1.4) (2025-10-16)
+
+
+### Bug Fixes
+
+* **ci:** Update workflows to use release pipeline ([#28](https://github.com/sous-chefs/xinetd/issues/28)) ([c0fb6fd](https://github.com/sous-chefs/xinetd/commit/c0fb6fd8d757670432db9e8995a351facd14df92))
+
 ## 2.1.0 - *2023-10-03*
 
 * Remove CircleCI config
