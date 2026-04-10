@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Xinetd
   module Cookbook
     module Helpers
