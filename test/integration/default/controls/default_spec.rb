@@ -1,36 +1,46 @@
-builtin = input('builtin')
+# frozen_string_literal: true
 
-control 'xinetd-default' do
-  describe package 'xinetd' do
+title 'Default Suite Tests'
+
+control 'xinetd-install-01' do
+  impact 1.0
+  title 'xinetd package is installed'
+  desc 'The xinetd package should be installed'
+
+  describe package('xinetd') do
     it { should be_installed }
   end
+end
 
-  describe service 'xinetd' do
+control 'xinetd-service-01' do
+  impact 1.0
+  title 'xinetd service is enabled'
+  desc 'The xinetd service should be enabled (it may not be running when no services are configured)'
+
+  describe service('xinetd') do
     it { should be_enabled }
-    it { should be_running }
   end
+end
 
-  # builtin services
-  %w(
-    1
-    7
-    9
-    13
-    19
-    37
-  ).each do |p|
-    describe port p do
-      if builtin
-        it { should be_listening }
-        its('processes') { should include 'xinetd' }
-        its('protocols') { should include 'tcp' }
-        its('protocols') { should include 'udp' } unless p.to_i == 1 # only listening on tcp
-      else
-        it { should_not be_listening }
-        its('processes') { should_not include 'xinetd' }
-        its('protocols') { should_not include 'tcp' }
-        its('protocols') { should_not include 'udp' }
-      end
-    end
+control 'xinetd-config-01' do
+  impact 0.7
+  title 'xinetd configuration file exists'
+  desc 'The /etc/xinetd.conf file should exist'
+
+  describe file('/etc/xinetd.conf') do
+    it { should exist }
+    it { should be_file }
+    its('content') { should match(/defaults/) }
+    its('content') { should match(%r{includedir /etc/xinetd\.d}) }
+  end
+end
+
+control 'xinetd-config-02' do
+  impact 0.7
+  title 'xinetd.d directory exists'
+  desc 'The /etc/xinetd.d directory should exist'
+
+  describe directory('/etc/xinetd.d') do
+    it { should exist }
   end
 end

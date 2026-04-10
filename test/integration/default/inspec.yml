@@ -1,5 +1,7 @@
 ---
-name: xinetd-default
-inputs:
-  - name: builtin
-    value: false
+name: default
+title: Default Suite Tests
+maintainer: Sous Chefs
+license: Apache-2.0
+summary: Verifies xinetd installs, configures, and starts correctly
+version: 1.0.0

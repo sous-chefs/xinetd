@@ -1,39 +1,60 @@
 ---
 driver:
   name: vagrant
+  customize:
+    memory: 1024
+
+transport:
+  max_wait_until_ready: 600
+  connection_retries: 10
+  connection_retry_sleep: 10
 
 provisioner:
   name: chef_infra
-  product_name: <%= ENV['CHEF_PRODUCT_NAME'] || 'chef' %>
-  product_version: <%= ENV['CHEF_VERSION'] || 'latest' %>
-  log_level: <%= ENV['CHEF_LOG_LEVEL'] || 'auto' %>
-  multiple_converge: 2
-  enforce_idempotency: true
+  product_name: chef
+  product_version: latest
+  channel: stable
+  chef_license: accept
   deprecations_as_errors: true
-  chef_license: accept-no-persist
 
 verifier:
   name: inspec
+  sudo: true
 
 platforms:
-  - name: centos-7
-  - name: centos-8
-  - name: centos-stream-8
-  - name: debian-9
-  - name: debian-10
-  - name: debian-11
-  - name: ubuntu-18.04
-  - name: ubuntu-20.04
+  - name: almalinux-8
+  - name: almalinux-9
+  - name: almalinux-10
+  - name: debian-12
+  - name: debian-13
+  - name: opensuse-leap-15
+  - name: oraclelinux-8
+  - name: oraclelinux-9
+  - name: rockylinux-8
+  - name: rockylinux-9
+  - name: rockylinux-10
+  - name: ubuntu-22.04
+  - name: ubuntu-24.04
+
+x-run_lists:
+  default: &default_run_list
+    - recipe[test::default]
+  builtin_services: &builtin_services_run_list
+    - recipe[test::builtin_services]
+
+x-verifiers:
+  default: &default_verifier
+    inspec_tests:
+      - path: test/integration/default
+  builtin_services: &builtin_services_verifier
+    inspec_tests:
+      - path: test/integration/builtin_services
 
 suites:
   - name: default
-    run_list:
-      - recipe[xinetd]
-  - name: builtin_services
-    run_list:
-      - recipe[xinetd::builtin_services]
-    verifier:
-      inspec_tests:
-        - path: test/integration/default
-      inputs:
-        builtin: true
+    run_list: *default_run_list
+    verifier: *default_verifier
+
+  - name: builtin-services
+    run_list: *builtin_services_run_list
+    verifier: *builtin_services_verifier

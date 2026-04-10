@@ -1,6 +1,17 @@
-property :cookbook, kind_of: String, default: 'xinetd'
-property :service_name, String, name_property: true
+# frozen_string_literal: true
+
+provides :xinetd_service
 unified_mode true
+
+description 'Manages an xinetd service definition in /etc/xinetd.d/'
+
+property :service_name, String,
+         name_property: true,
+         description: 'Name of the xinetd service (also the filename in /etc/xinetd.d/)'
+
+property :cookbook, String,
+         default: 'xinetd',
+         description: 'Cookbook to source the service.erb template from'
 
 Xinetd::Cookbook::Helpers::OPTIONS.each do |opt|
   property opt
@@ -24,7 +35,21 @@ action :disable do
   service_def_template(true)
 end
 
+action :delete do
+  file "/etc/xinetd.d/#{new_resource.name}" do
+    action :delete
+    notifies :reload, 'service[xinetd]', :immediately
+  end
+
+  service 'xinetd' do
+    supports reload: true
+    action :nothing
+  end
+end
+
 action_class do
+  include Xinetd::Cookbook::Helpers
+
   def service_def_template(disabled)
     template "/etc/xinetd.d/#{new_resource.name}" do
       cookbook new_resource.cookbook

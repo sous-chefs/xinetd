@@ -1,0 +1,7 @@
+---
+name: builtin-services
+title: Builtin Services Suite Tests
+maintainer: Sous Chefs
+license: Apache-2.0
+summary: Verifies xinetd internal (INTERNAL type) builtin services are active
+version: 1.0.0
