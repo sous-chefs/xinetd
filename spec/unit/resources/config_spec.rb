@@ -19,7 +19,7 @@ describe 'xinetd_config' do
     it { is_expected.to start_service('xinetd') }
 
     it do
-      expect(chef_run.template('/etc/xinetd.conf')).to notify('service[xinetd]').to(:reload).immediately
+      expect(chef_run.template('/etc/xinetd.conf')).to notify('service[xinetd]').to(:restart).delayed
     end
 
     it do

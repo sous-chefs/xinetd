@@ -91,7 +91,7 @@ action :create do
     cookbook new_resource.cookbook
     source 'xinetd.conf.erb'
     variables defaults: config_defaults
-    notifies :reload, 'service[xinetd]', :immediately
+    notifies :restart, 'service[xinetd]', :delayed
   end
 
   service 'xinetd' do

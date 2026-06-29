@@ -17,7 +17,7 @@ verifier:
 platforms:
   - name: almalinux-8
   - name: debian-12
-  - name: opensuse-leap-15
+  - name: debian-13
   - name: oraclelinux-8
   - name: rockylinux-8
   - name: ubuntu-22.04

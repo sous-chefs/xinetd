@@ -4,8 +4,10 @@ Manages xinetd builtin (INTERNAL) services: chargen, daytime, discard, echo, tim
 
 ## Actions
 
-- `:create` - Creates/enables or disables the builtin services based on their enabled properties (default)
-- `:delete` - Removes all builtin service definitions from `/etc/xinetd.d/`
+| Action    | Description |
+|-----------|-------------|
+| `:create` | **Default.** Creates, enables, or disables builtin service definitions based on their enabled properties. |
+| `:delete` | Removes all builtin service definitions from `/etc/xinetd.d/`. |
 
 ## Properties
 

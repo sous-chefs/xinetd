@@ -24,7 +24,7 @@ verifier:
 platforms:
   - name: almalinux-8
   - name: debian-12
-  - name: opensuse-leap-15
+  - name: debian-13
   - name: oraclelinux-8
   - name: rockylinux-8
   - name: ubuntu-22.04
@@ -51,4 +51,6 @@ suites:
 
   - name: builtin-services
     run_list: *builtin_services_run_list
+    provisioner:
+      named_run_list: builtin_services
     verifier: *builtin_services_verifier
