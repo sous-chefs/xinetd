@@ -38,7 +38,7 @@ end
 action :delete do
   file "/etc/xinetd.d/#{new_resource.name}" do
     action :delete
-    notifies :reload, 'service[xinetd]', :immediately
+    notifies :restart, 'service[xinetd]', :delayed
   end
 
   service 'xinetd' do
@@ -57,7 +57,7 @@ action_class do
       variables name: new_resource.service_name,
                 options: xinetd_options,
                 disabled: Xinetd::Cookbook::Helpers.xinetd_bool(disabled)
-      notifies :reload, 'service[xinetd]', :immediately
+      notifies :restart, 'service[xinetd]', :delayed
     end
   end
 

@@ -27,7 +27,7 @@ describe 'xinetd_service' do
     end
 
     it do
-      expect(chef_run.template('/etc/xinetd.d/my-service')).to notify('service[xinetd]').to(:reload).immediately
+      expect(chef_run.template('/etc/xinetd.d/my-service')).to notify('service[xinetd]').to(:restart).delayed
     end
   end
 
@@ -58,7 +58,7 @@ describe 'xinetd_service' do
     it { is_expected.to delete_file('/etc/xinetd.d/my-service') }
 
     it do
-      expect(chef_run.file('/etc/xinetd.d/my-service')).to notify('service[xinetd]').to(:reload).immediately
+      expect(chef_run.file('/etc/xinetd.d/my-service')).to notify('service[xinetd]').to(:restart).delayed
     end
   end
 

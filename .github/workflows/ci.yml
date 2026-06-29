@@ -24,6 +24,7 @@ jobs:
         os:
           - almalinux-8
           - debian-12
+          - debian-13
           - oraclelinux-8
           - rockylinux-8
           - ubuntu-2204
@@ -31,9 +32,6 @@ jobs:
         suite:
           - default
           - builtin-services
-        exclude:
-          - os: ubuntu-2404
-            suite: builtin-services
       fail-fast: false
     steps:
       - name: Check out code

@@ -7,8 +7,9 @@
 ## Description
 
 This cookbook provides custom resources for installing, configuring, and managing
-the xinetd extended internet services daemon. See [LIMITATIONS.md](LIMITATIONS.md)
-for platform availability details.
+the xinetd extended internet services daemon. See [AGENTS.md](AGENTS.md) for
+platform availability details and [migration.md](migration.md) for the
+custom-resource migration guide.
 
 ## Maintainers
 
@@ -23,14 +24,13 @@ together to maintain important cookbooks. If you'd like to know more please visi
 
 | Platform      | Versions             |
 |---------------|----------------------|
-| AlmaLinux     | 8, 9, 10             |
+| AlmaLinux     | 8                    |
 | Debian        | 12, 13               |
-| openSUSE Leap | 15                   |
-| Oracle Linux  | 8, 9                 |
-| Rocky Linux   | 8, 9, 10             |
+| Oracle Linux  | 8                    |
+| Rocky Linux   | 8                    |
 | Ubuntu        | 22.04 LTS, 24.04 LTS |
 
-See [LIMITATIONS.md](LIMITATIONS.md) for architecture and legacy platform details.
+See [AGENTS.md](AGENTS.md) for architecture, package availability, and legacy platform details.
 
 ### Chef Version
 

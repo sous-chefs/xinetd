@@ -57,48 +57,74 @@ property :tcpmux_server_enabled, [true, false],
 default_action :create
 
 action :create do
+  service 'xinetd' do
+    action :nothing
+  end
+
   %w(chargen daytime discard echo time).each do |svc|
-    xinetd_service "#{svc}-stream" do
-      service_name svc
-      id "#{svc}-stream"
-      type 'INTERNAL'
-      wait false
-      socket_type 'stream'
-      action new_resource.send(:"#{svc}_stream_enabled") ? :enable : :disable
-    end
+    builtin_service_file "#{svc}-stream",
+                         service_name: svc,
+                         id: "#{svc}-stream",
+                         type: 'INTERNAL',
+                         wait: false,
+                         socket_type: 'stream',
+                         disabled: !new_resource.send(:"#{svc}_stream_enabled")
 
-    xinetd_service "#{svc}-dgram" do
-      service_name svc
-      id "#{svc}-dgram"
-      type 'INTERNAL'
-      wait true
-      socket_type 'dgram'
-      action new_resource.send(:"#{svc}_dgram_enabled") ? :enable : :disable
-    end
+    builtin_service_file "#{svc}-dgram",
+                         service_name: svc,
+                         id: "#{svc}-dgram",
+                         type: 'INTERNAL',
+                         wait: true,
+                         socket_type: 'dgram',
+                         disabled: !new_resource.send(:"#{svc}_dgram_enabled")
   end
 
-  xinetd_service 'tcpmux-server' do
-    service_name 'tcpmux'
-    id 'tcpmux-server'
-    type 'INTERNAL'
-    wait false
-    socket_type 'stream'
-    action new_resource.tcpmux_server_enabled ? :enable : :disable
-  end
+  builtin_service_file 'tcpmux-server',
+                       service_name: 'tcpmux',
+                       id: 'tcpmux-server',
+                       type: 'INTERNAL',
+                       wait: false,
+                       socket_type: 'stream',
+                       disabled: !new_resource.tcpmux_server_enabled
 end
 
 action :delete do
+  service 'xinetd' do
+    action :nothing
+  end
+
   %w(chargen daytime discard echo time).each do |svc|
-    xinetd_service "#{svc}-stream" do
+    file "/etc/xinetd.d/#{svc}-stream" do
       action :delete
+      notifies :restart, 'service[xinetd]', :delayed
     end
 
-    xinetd_service "#{svc}-dgram" do
+    file "/etc/xinetd.d/#{svc}-dgram" do
       action :delete
+      notifies :restart, 'service[xinetd]', :delayed
     end
   end
 
-  xinetd_service 'tcpmux-server' do
+  file '/etc/xinetd.d/tcpmux-server' do
     action :delete
+    notifies :restart, 'service[xinetd]', :delayed
+  end
+end
+
+action_class do
+  def builtin_service_file(name, service_name:, id:, type:, wait:, socket_type:, disabled:)
+    template "/etc/xinetd.d/#{name}" do
+      cookbook 'xinetd'
+      source 'service.erb'
+      variables name: service_name,
+                disabled: Xinetd::Cookbook::Helpers.xinetd_bool(disabled),
+                options: {
+                  'id' => id,
+                  'type' => type,
+                  'socket_type' => socket_type,
+                  'wait' => Xinetd::Cookbook::Helpers.xinetd_bool(wait),
+                }
+      notifies :restart, 'service[xinetd]', :delayed
+    end
   end
 end

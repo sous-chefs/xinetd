@@ -1,6 +1,6 @@
 # xinetd_service
 
-Manages an xinetd service definition in `/etc/xinetd.d/`. Creates or updates the service configuration file from the `service.erb` template and notifies xinetd to reload.
+Manages an xinetd service definition in `/etc/xinetd.d/`. Creates or updates the service configuration file from the `service.erb` template and notifies xinetd to restart.
 
 ## Actions
 
@@ -8,7 +8,7 @@ Manages an xinetd service definition in `/etc/xinetd.d/`. Creates or updates the
 |------------|-----------------------------------------------------------------------------------------------------------|
 | `:enable`  | **Default.** Creates the service definition file with `disable = no` and starts xinetd.                   |
 | `:disable` | Creates the service definition file with `disable = yes`. xinetd remains running but ignores the service. |
-| `:delete`  | Removes the service definition file from `/etc/xinetd.d/` and reloads xinetd.                             |
+| `:delete`  | Removes the service definition file from `/etc/xinetd.d/` and restarts xinetd.                            |
 
 ## Properties
 
