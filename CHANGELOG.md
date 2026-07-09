@@ -1,5 +1,16 @@
 # xinetd Cookbook CHANGELOG
 
+## [4.0.0](https://github.com/sous-chefs/xinetd/compare/v3.0.0...v4.0.0) (2026-06-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* consumers still carrying older recipe or attribute usage should manage xinetd state through xinetd_install, xinetd_config, xinetd_service, and xinetd_builtin_services resources.
+
+### Features
+
+* complete xinetd resource migration cleanup ([#37](https://github.com/sous-chefs/xinetd/issues/37)) ([247efc7](https://github.com/sous-chefs/xinetd/commit/247efc773692355be2e0537260fe4323eacfd8f5))
+
 ## [3.0.0](https://github.com/sous-chefs/xinetd/compare/v2.1.4...v3.0.0) (2026-04-10)
 
 
